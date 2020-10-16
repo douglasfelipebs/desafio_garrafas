@@ -1,0 +1,11 @@
+{
+  "name": "desafio_garrafas",
+  "version": "1.0.0",
+  "description": "Sofware para resolver o problema das garrafas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Douglas Felipe Bussmann Siedschlag",
+  "license": "MIT"
+}
