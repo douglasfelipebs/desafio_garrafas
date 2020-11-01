@@ -1,51 +1,38 @@
-console.log('Application Started!')
+var resolveDesafio = require('./resolveDesafio.js');
 
 const readline = require('readline');
 
 const main = async () => {
-    const galao = await readLine("Insira o volume do galão (L):\n");
-    const qtdeGarrafas = await readLine("Quantidade de garrafas:\n")
+  const galao = await readLine('Insira o volume do galão (L):\n')
+    .catch((e) => console.error(e));
+  const qtdeGarrafas = await readLine('Quantidade de garrafas:\n')
+    .catch((e) => console.error(e));
 
-    const garrafas = [];
-    for (let i = 0; i < parseInt(qtdeGarrafas); i++) {
-        garrafas.push(parseInt(await readLine(`Garrafa ${i + 1}:\n`)));
-    }
-    garrafas.sort();
+  const garrafas = [];
+  for (let i = 0; i < parseInt(qtdeGarrafas); i++) {
+    garrafas.push(parseInt(await readLine(`Garrafa ${i + 1}:\n`)
+      .catch((e) => console.error(e))));
+  }
+  garrafas.sort();
+  const {
+    sobra,
+    resposta,
+    liqGalao,
+  } = resolveDesafio(galao, garrafas);
+  console.log(`Resposta: [${resposta}], sobra ${sobra}L, líquido no Galão: ${liqGalao}`);
 
-    console.log('Galão:\t', galao);
-    console.log('Qtde Garrafas:\t', qtdeGarrafas);
-    console.log('Garrafas:\t', garrafas);
-
-    const result = [];
-    const sobra = 0;
-    let liqGalao = 0;
-    
-    while (liqGalao < galao) {
-        garrafas.reduce((faltaEncher, garrafa) => {
-            console.log('garrafa', garrafa);
-            console.log('faltaEncher', faltaEncher);
-            if (garrafa < faltaEncher) {
-                liqGalao += garrafa;
-                result.push(garrafa);
-                return galao = liqGalao;
-            }
-        }, galao)
-    }
-
-    console.log(`Resposta: [${result}], sobra ${sobra}L`);
-
-    leitor.close();
-}
+  leitor.close();
+};
 
 const leitor = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
+  input: process.stdin,
+  output: process.stdout,
 });
 
 const readLine = async (outputText) => new Promise((resolve, reject) => {
-    leitor.question(outputText, function (input) {
-        resolve(input);
-    });
-})
+  leitor.question(outputText, function (input) {
+    resolve(input);
+  });
+});
 
 main();

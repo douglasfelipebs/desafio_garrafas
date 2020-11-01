@@ -4,8 +4,13 @@
   "description": "Sofware para resolver o problema das garrafas",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha",
+    "start": "node index.js",
+    "docker-init": "sh init.sh"
   },
   "author": "Douglas Felipe Bussmann Siedschlag",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^8.2.0"
+  }
 }
